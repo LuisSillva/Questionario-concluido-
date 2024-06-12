@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sucesso</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #007bff;
+            margin-top: 0;
+        }
+
+        h2 {
+            color: #007bff;
+            margin-top: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        .resposta {
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Formulário enviado com sucesso!</h1>
+
+        <h2>Respostas Qualitativas:</h2>
+        <h3 style='color: #007bff'>1ª pessoa:<h3>
+        <ul>
+            {% for resposta in respostas_qualitativas %}
+                <li><span class="resposta">{{ resposta.pergunta }}:</span> {{ resposta.resposta_texto }}</li>
+                {% if forloop.counter|divisibleby:5 and not forloop.last %}
+                    <h3 style='color: #007bff'>{% cycle '2ª Pessoa' '3ª Pessoa' '4ª Pessoa' '5ª Pessoa' '6ª Pessoa' as ciclo %}</h3>
+                {% endif %}
+            {% endfor %}
+        </ul>
+
+        <h2>Respostas Quantitativas:</h2>
+        <h3 style='color: #007bff'>1ª pessoa:<h3>
+        <ul>
+            {% for resposta in respostas_quantitativas %}
+                <li><span class="resposta">{{ resposta.pergunta }}:</span> {{ resposta.resposta_numero }}</li>
+                {% if forloop.counter|divisibleby:5 and not forloop.last %}
+                    <h3 style='color: #007bff'>{% cycle '2ª Pessoa' '3ª Pessoa' '4ª Pessoa' '5ª Pessoa' '6ª Pessoa' as ciclo %}</h3>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
